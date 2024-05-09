@@ -24,7 +24,7 @@
                         <a v-if="setting.social_media_facebook" target="_blank" :href="setting.social_media_facebook"
                             class="fa-brands fa-facebook-f inline-block text-sm w-7 h-7 leading-7 text-center rounded-full shadow-lg bg-white text-primary"></a>
                         <a v-if="setting.social_media_twitter" target="_blank" :href="setting.social_media_twitter"
-                            class="fa-brands fa-twitter inline-block text-sm w-7 h-7 leading-7 text-center rounded-full shadow-lg bg-white text-primary"></a>
+                            class="fa-brands fa-x-twitter inline-block text-sm w-7 h-7 leading-7 text-center rounded-full shadow-lg bg-white text-primary"></a>
                         <a v-if="setting.social_media_instagram" target="_blank" :href="setting.social_media_instagram"
                             class="fa-brands fa-instagram inline-block text-sm w-7 h-7 leading-7 text-center rounded-full shadow-lg bg-white text-primary"></a>
                         <a v-if="setting.social_media_youtube" target="_blank" :href="setting.social_media_youtube"
@@ -34,7 +34,7 @@
                 <div>
                     <div class="sm:w-fit sm:mx-auto">
                         <h3 class="capitalize text-lg font-semibold mb-6 text-white">{{ $t('label.useful_links') }}</h3>
-                        <nav v-if="pages.length > 0"  class="flex flex-col items-start gap-3">
+                        <nav v-if="pages.length > 0" class="flex flex-col items-start gap-3">
                             <router-link v-for="page in pages" class="capitalize text-white hover:underline"
                                 :to="{ name: 'frontend.page', params: { slug: page.slug } }">
                                 {{ page.title }}

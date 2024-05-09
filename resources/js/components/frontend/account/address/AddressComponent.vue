@@ -106,7 +106,7 @@ export default {
             this.localAddress = address;
         },
         edit: function (address) {
-            appService.modalShow();
+            appService.modalShow("#address");
             this.loading.isActive = true;
             this.$store.dispatch("frontendAddress/edit", address.id).then((res) => {
                 this.loading.isActive = false;

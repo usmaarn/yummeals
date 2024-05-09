@@ -17,10 +17,11 @@ class SubscriberResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            "id"            => $this->id,
-            "email"         => $this->email,
-            'create_date'   => AppLibrary::date($this->created_at),
-            'update_date'   => AppLibrary::date($this->updated_at)
+            "id"          => $this->id,
+            "email"       => $this->email,
+            'date_time'   => AppLibrary::datetime($this->created_at),
+            'create_date' => AppLibrary::date($this->created_at),
+            'update_date' => AppLibrary::date($this->updated_at)
         ];
     }
 }

@@ -6,6 +6,7 @@ namespace App\Services;
 use Exception;
 use Illuminate\Support\Str;
 use App\Models\ItemCategory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\PaginateRequest;
@@ -125,6 +126,24 @@ class ItemCategoryService
             return $itemCategory;
         } catch (Exception $exception) {
             Log::info($exception->getMessage());
+            throw new Exception($exception->getMessage(), 422);
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function sortCategory(Request $request)
+    {
+        try {
+            DB::transaction(function () use ($request) {
+                foreach ($request->category_id as $index => $id) {
+                    ItemCategory::where('id', $id)->update(['sort' => $index + 1]);
+                }
+            });
+        } catch (Exception $exception) {
+            Log::info($exception->getMessage());
+            DB::rollBack();
             throw new Exception($exception->getMessage(), 422);
         }
     }

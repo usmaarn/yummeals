@@ -32,7 +32,6 @@ class PageRequest extends FormRequest
                 Rule::unique("pages", "title")->ignore($this->route('page.id'))
             ],
             'description'     => ['required', 'string'],
-            'menu_section_id' => ['required', 'numeric'],
             'template_id'     => ['nullable', 'numeric'],
             'status'          => ['required', 'numeric', 'max:24'],
             'image'           => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048']

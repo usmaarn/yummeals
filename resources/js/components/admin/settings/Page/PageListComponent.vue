@@ -99,7 +99,6 @@ export default {
                 form: {
                     title: "",
                     description: "",
-                    menu_section_id: null,
                     template_id: null,
                     status: statusEnum.ACTIVE,
                 },
@@ -162,7 +161,6 @@ export default {
                 title: page.title,
                 status: page.status,
                 description: page.description,
-                menu_section_id: page.menu_section_id,
                 template_id: page.template_id === 0 ? null : page.template_id,
             };
             this.loading.isActive = false;

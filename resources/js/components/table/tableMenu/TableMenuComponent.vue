@@ -147,8 +147,8 @@ export default {
             categoryProps: {
                 search: {
                     paginate: 0,
-                    order_column: "id",
-                    order_type: "asc",
+                    order_column: 'sort',
+                    order_type: 'asc',
                     status: statusEnum.ACTIVE
                 },
             },

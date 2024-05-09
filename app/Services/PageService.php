@@ -66,7 +66,7 @@ class PageService
     public function store(PageRequest $request)
     {
         try {
-            $page = Page::create($request->validated() + ['slug' => Str::slug($request->title)]);
+            $page = Page::create($request->validated() + ['slug' => Str::slug($request->title), 'menu_section_id' => 2]);
             if ($request->image) {
                 $page->addMediaFromRequest('image')->toMediaCollection('page-image');
             }

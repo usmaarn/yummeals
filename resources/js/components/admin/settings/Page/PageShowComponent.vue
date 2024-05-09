@@ -17,8 +17,8 @@
                     <label class="db-badge mb-3" :class="statusClass(page.status)">
                         {{ enums.statusEnumArray[page.status] }}
                     </label>
-                    <p class="db-light-text">
-                        {{ page.description }}
+                    <p v-html="page.description" class="db-light-text">
+
                     </p>
                 </div>
             </div>

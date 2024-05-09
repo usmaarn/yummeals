@@ -36,8 +36,8 @@
                                 </div>
                                 <div class="db-field-radio">
                                     <div class="custom-radio">
-                                        <input :value="enums.statusEnum.INACTIVE" v-model="props.form.status"
-                                            type="radio" id="inactive" class="custom-radio-field" />
+                                        <input :value="enums.statusEnum.INACTIVE" v-model="props.form.status" type="radio"
+                                            id="inactive" class="custom-radio-field" />
                                         <span class="custom-radio-span"></span>
                                     </div>
                                     <label for="inactive" class="db-field-label">{{ $t("label.inactive") }}</label>
@@ -80,9 +80,6 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_item_attribute"),
-            },
             enums: {
                 statusEnum: statusEnum,
                 statusEnumArray: {
@@ -92,6 +89,11 @@ export default {
             },
             errors: {},
         };
+    },
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_item_attribute') };
+        }
     },
     methods: {
         reset: function () {

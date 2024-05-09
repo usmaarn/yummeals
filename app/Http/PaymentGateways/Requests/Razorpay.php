@@ -29,12 +29,14 @@ class Razorpay extends FormRequest
                 'razorpay_key'    => ['required', 'string'],
                 'razorpay_secret' => ['required', 'string'],
                 'razorpay_status' => ['nullable', 'numeric'],
+                'razorpay_mode'   => ['nullable', 'numeric'],
             ];
         } else {
             return [
                 'razorpay_key'    => ['nullable', 'string'],
                 'razorpay_secret' => ['nullable', 'string'],
                 'razorpay_status' => ['nullable', 'numeric'],
+                'razorpay_mode'   => ['nullable', 'numeric'],
             ];
         }
     }

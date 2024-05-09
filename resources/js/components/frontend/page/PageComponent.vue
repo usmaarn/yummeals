@@ -8,8 +8,7 @@
                 <div v-if="page.image" class="w-full mb-6">
                     <img :src="page.image" alt="image">
                 </div>
-                <p class="text-xs text-heading">
-                    {{ page.description }}
+                <p v-html="page.description" class="text-xs text-heading">
                 </p>
             </div>
             <TemplateManagerComponent :templateId="page.template_id" />

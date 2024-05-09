@@ -90,6 +90,19 @@ export const itemCategory = {
                 });
             });
         },
+        sortCategory: function (context, payload) {
+            return new Promise((resolve, reject) => {
+                let method = axios.post;
+                let url = '/admin/setting/item-category/sort/category';
+                method(url, payload.form).then(res => {
+                    context.dispatch('lists', payload.search).then().catch();
+                    context.commit('reset');
+                    resolve(res);
+                }).catch((err) => {
+                    reject(err);
+                });
+            });
+        },
         reset: function (context) {
             context.commit('reset');
         },

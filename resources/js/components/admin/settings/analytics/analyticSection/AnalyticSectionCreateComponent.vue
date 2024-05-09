@@ -69,9 +69,6 @@ export default {
             loading: {
                 isActive: false
             },
-            addButton: {
-                title: this.$t("button.add_analytic_section")
-            },
             enums: {
                 analyticSectionEnum: analyticSectionEnum,
                 analyticSectionObject: [
@@ -90,6 +87,11 @@ export default {
                 ],
             },
             errors: {},
+        }
+    },
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_analytic_section') };
         }
     },
     methods: {

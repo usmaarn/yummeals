@@ -178,8 +178,8 @@
                         </button>
                     </div>
                     <div class="p-4" v-else>
-                        <FrontendOrderReceiptComponent :order="order" :orderBranch="orderBranch" :orderItems="orderItems" :orderUser="orderUser"
-                            :orderAddress="orderAddress" />
+                        <FrontendOrderReceiptComponent :order="order" :orderBranch="orderBranch" :orderItems="orderItems"
+                            :orderUser="orderUser" :orderAddress="orderAddress" />
                     </div>
 
 
@@ -291,6 +291,13 @@ export default {
                             1,
                             this.$t("label.status")
                         );
+                        this.$store.dispatch("frontendEditProfile/profile").then((res) => {
+                                this.$store.dispatch('updateAuthInfo', res.data.data).then(res => {
+                                    this.loading.isActive = false;
+                                }).catch((err) => {
+                                    this.loading.isActive = false;
+                                });
+                            });
                     }).catch((err) => {
                         this.loading.isActive = false;
                         alertService.error(err.response.data.message);

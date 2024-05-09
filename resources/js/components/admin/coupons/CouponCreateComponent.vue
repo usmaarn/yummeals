@@ -12,15 +12,15 @@
                 <div class="form-row">
                     <div class="form-col-12 sm:form-col-6">
                         <label for="name" class="db-field-title required">{{ $t("label.name") }}</label>
-                        <input v-model="props.form.name" v-bind:class="errors.name ? 'invalid' : ''" type="text"
-                            id="name" class="db-field-control" />
+                        <input v-model="props.form.name" v-bind:class="errors.name ? 'invalid' : ''" type="text" id="name"
+                            class="db-field-control" />
                         <small class="db-field-alert" v-if="errors.name">{{ errors.name[0] }}</small>
                     </div>
 
                     <div class="form-col-12 sm:form-col-6">
                         <label for="code" class="db-field-title required">{{ $t("label.code") }}</label>
-                        <input v-model="props.form.code" v-bind:class="errors.code ? 'invalid' : ''" type="text"
-                            id="code" class="db-field-control" />
+                        <input v-model="props.form.code" v-bind:class="errors.code ? 'invalid' : ''" type="text" id="code"
+                            class="db-field-control" />
                         <small class="db-field-alert" v-if="errors.code">{{
                             errors.code[0]
                         }}</small>
@@ -41,8 +41,8 @@
                         <div class="db-field-radio-group">
                             <div class="db-field-radio">
                                 <div class="custom-radio">
-                                    <input :value="enums.taxTypeEnum.FIXED" v-model="props.form.discount_type"
-                                        id="fixed" type="radio" class="custom-radio-field" />
+                                    <input :value="enums.taxTypeEnum.FIXED" v-model="props.form.discount_type" id="fixed"
+                                        type="radio" class="custom-radio-field" />
                                     <span class="custom-radio-span"></span>
                                 </div>
                                 <label for="fixed" class="db-field-label">{{
@@ -105,9 +105,8 @@
                     </div>
                     <div class="form-col-12 sm:form-col-6">
                         <label for="limit_per_user" class="db-field-title">{{ $t("label.limit_per_user") }}</label>
-                        <input v-model="props.form.limit_per_user" v-on:keypress="floatNumber($event)" v-bind:class="
-                            errors.limit_per_user ? 'invalid' : ''
-                        " type="text" id="limit_per_user" class="db-field-control" />
+                        <input v-model="props.form.limit_per_user" v-on:keypress="floatNumber($event)" v-bind:class="errors.limit_per_user ? 'invalid' : ''
+                            " type="text" id="limit_per_user" class="db-field-control" />
                         <small class="db-field-alert" v-if="errors.limit_per_user">{{
                             errors.limit_per_user[0]
                         }}</small>
@@ -161,9 +160,6 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_coupon"),
-            },
             enums: {
                 taxTypeEnum: taxTypeEnum,
                 taxTypeEnumArray: {
@@ -175,7 +171,11 @@ export default {
             errors: {},
         };
     },
-    computed: {},
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_coupon') };
+        }
+    },
     methods: {
         floatNumber(e) {
             return appService.floatNumber(e);

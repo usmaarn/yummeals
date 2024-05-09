@@ -275,6 +275,14 @@ class PermissionTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'title'      => 'Subscribers',
+                'name'       => 'subscribers',
+                'guard_name' => 'sanctum',
+                'url'        => 'subscribers',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'title'      => 'Administrators',
                 'name'       => 'administrators',
                 'guard_name' => 'sanctum',

@@ -28,12 +28,10 @@
                                 $t("label.longitude")
                             }}</label>
                             <div class="db-multiple-field">
-                                <input v-model="props.form.latitude" v-bind:class="
-                                    errors.latitude ? 'invalid' : ''
-                                " type="text" id="latitude" />
-                                <input v-model="props.form.longitude" v-bind:class="
-                                    errors.longitude ? 'invalid' : ''
-                                " type="text" id="longitude" />
+                                <input v-model="props.form.latitude" v-bind:class="errors.latitude ? 'invalid' : ''
+                                    " type="text" id="latitude" />
+                                <input v-model="props.form.longitude" v-bind:class="errors.longitude ? 'invalid' : ''
+                                    " type="text" id="longitude" />
                                 <button @click="add" v-on:click="isMap = true" type="button"
                                     class="fa-solid fa-map-location-dot" data-modal="#branchMap"></button>
                             </div>
@@ -181,9 +179,6 @@ export default {
                 isActive: false,
             },
 
-            addButton: {
-                title: this.$t("button.add_branch"),
-            },
             enums: {
                 statusEnum: statusEnum,
                 statusEnumArray: {
@@ -195,6 +190,11 @@ export default {
             address: "",
             errors: {},
         };
+    },
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_branch') };
+        }
     },
     methods: {
         add: function () {

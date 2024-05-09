@@ -62,7 +62,7 @@
                                 $t("label.description")
                             }}</label>
                             <textarea v-model="props.form.description" v-bind:class="errors.description ? 'invalid' : ''
-                                    " id="description" class="db-field-control"></textarea>
+                                " id="description" class="db-field-control"></textarea>
                             <small class="db-field-alert" v-if="errors.description">{{ errors.description[0] }}</small>
                         </div>
 
@@ -101,9 +101,6 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_slider"),
-            },
             enums: {
                 statusEnum: statusEnum,
                 statusEnumArray: {
@@ -114,6 +111,11 @@ export default {
             image: "",
             errors: {},
         };
+    },
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_slider') };
+        }
     },
     methods: {
         changeImage: function (e) {

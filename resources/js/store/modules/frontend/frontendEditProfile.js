@@ -12,6 +12,15 @@ export const frontendEditProfile = {
         },
     },
     actions: {
+        profile: function (context) {
+            return new Promise((resolve, reject) => {
+                axios.get('/profile').then(res => {
+                    resolve(res);
+                }).catch((err) => {
+                    reject(err);
+                });
+            });
+        },
         updateProfile: function (context, payload) {
             return new Promise((resolve, reject) => {
                 axios.put('/profile', payload).then(res => {

@@ -93,9 +93,6 @@ export default {
             loading: {
                 isActive: false
             },
-            addButton: {
-                title: this.$t("button.add_item_category")
-            },
             enums: {
                 statusEnum: statusEnum,
                 statusEnumArray: {
@@ -105,6 +102,11 @@ export default {
             },
             image: "",
             errors: {},
+        }
+    },
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_item_category') };
         }
     },
     methods: {

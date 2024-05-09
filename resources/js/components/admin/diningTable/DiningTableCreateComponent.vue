@@ -82,9 +82,6 @@ export default {
             loading: {
                 isActive: false
             },
-            addButton: {
-                title: this.$t("button.add_dining_table")
-            },
             enums: {
                 statusEnum: statusEnum,
                 statusEnumArray: {
@@ -96,9 +93,12 @@ export default {
         }
     },
     computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_dining_table') };
+        },
         branches: function () {
             return this.$store.getters['branch/lists'];
-        },
+        }
     },
     mounted() {
         try {

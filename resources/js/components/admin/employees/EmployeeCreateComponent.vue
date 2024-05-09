@@ -32,7 +32,7 @@
 
                     <div class="form-col-12 sm:form-col-6">
                         <label for="phone" class="text-xs capitalize mb-1 text-heading">{{ $t('label.phone') }}</label>
-                            <div :class="errors.phone ? 'invalid' : ''" class="db-field-control flex items-center">
+                        <div :class="errors.phone ? 'invalid' : ''" class="db-field-control flex items-center">
                             <div class="w-fit flex-shrink-0 dropdown-group">
                                 <button type="button" class="flex items-center gap-1 dropdown-btn">
                                     {{ flag }}
@@ -43,8 +43,7 @@
                                 </button>
                             </div>
                             <input v-model="props.form.phone" v-on:keypress="phoneNumber($event)" v-bind:class="errors.phone
-                                ? 'invalid' : ''" type="text" id="phone"
-                                class="pl-2 text-sm w-full h-full" />
+                                ? 'invalid' : ''" type="text" id="phone" class="pl-2 text-sm w-full h-full" />
                         </div>
                         <small class="db-field-alert" v-if="errors.phone">
                             {{ errors.phone[0] }}
@@ -128,11 +127,10 @@
                                 <div class="custom-radio">
                                     <input class="custom-radio-field" v-model="props.form.branch_id" type="radio"
                                         v-bind:class="errors.branch_id ? 'is-invalid' : ''" id="current_branch"
-                                        :value="defaultAccess.branch_id" :checked="
-                                            props.form.branch_id === '' ||
+                                        :value="defaultAccess.branch_id" :checked="props.form.branch_id === '' ||
                                             props.form.branch_id === null ||
                                             props.form.branch_id === defaultAccess.branch_id
-                                        " />
+                                            " />
                                     <span class="custom-radio-span"></span>
                                 </div>
                                 <label for="current_branch" class="db-field-label">{{
@@ -186,9 +184,6 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_employee"),
-            },
             enums: {
                 statusEnum: statusEnum,
                 statusEnumArray: {
@@ -202,6 +197,9 @@ export default {
         };
     },
     computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_employee') };
+        },
         defaultAccess: function () {
             return this.$store.getters["defaultAccess/show"];
         },

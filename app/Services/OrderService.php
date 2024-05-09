@@ -724,9 +724,9 @@ class OrderService
     {
         try {
             DB::transaction(function () use ($order) {
-                $order->address()->delete();
-                $order->coupon()->delete();
-                $order->orderItems()->delete();
+                $order->address()?->delete();
+                $order->coupon()?->delete();
+                $order->orderItems()?->delete();
                 $order->delete();
             });
         } catch (Exception $exception) {

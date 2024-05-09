@@ -1,6 +1,6 @@
 <template>
-    <LoadingComponent :props="loading"/>
-    <SmSidebarModalCreateComponent :props="addButton"/>
+    <LoadingComponent :props="loading" />
+    <SmSidebarModalCreateComponent :props="addButton" />
 
     <div id="sidebar" class="drawer">
         <div class="drawer-header">
@@ -12,25 +12,24 @@
                 <div class="form-row">
                     <div class="form-col-12 sm:form-col-6">
                         <label for="name" class="db-field-title required">{{
-                                $t("label.name")
-                            }}</label>
-                        <input v-model="props.form.name" v-bind:class="errors.name ? 'invalid' : ''" type="text"
-                               id="name"
-                               class="db-field-control"/>
+                            $t("label.name")
+                        }}</label>
+                        <input v-model="props.form.name" v-bind:class="errors.name ? 'invalid' : ''" type="text" id="name"
+                            class="db-field-control" />
                         <small class="db-field-alert" v-if="errors.name">{{
-                                errors.name[0]
-                            }}</small>
+                            errors.name[0]
+                        }}</small>
                     </div>
 
                     <div class="form-col-12 sm:form-col-6">
                         <label for="email" class="db-field-title required">{{
-                                $t("label.email")
-                            }}</label>
+                            $t("label.email")
+                        }}</label>
                         <input v-model="props.form.email" v-bind:class="errors.email ? 'invalid' : ''" type="text"
-                               id="email" class="db-field-control"/>
+                            id="email" class="db-field-control" />
                         <small class="db-field-alert" v-if="errors.email">{{
-                                errors.email[0]
-                            }}</small>
+                            errors.email[0]
+                        }}</small>
                     </div>
 
                     <div class="form-col-12 sm:form-col-6">
@@ -46,8 +45,7 @@
                                 </button>
                             </div>
                             <input v-model="props.form.phone" v-on:keypress="phoneNumber($event)" v-bind:class="errors.phone
-                                ? 'invalid' : ''" type="text" id="phone"
-                                   class="pl-2 text-sm w-full h-full"/>
+                                ? 'invalid' : ''" type="text" id="phone" class="pl-2 text-sm w-full h-full" />
                         </div>
                         <small class="db-field-alert" v-if="errors.phone">
                             {{ errors.phone[0] }}
@@ -62,49 +60,47 @@
                             <div class="db-field-radio">
                                 <div class="custom-radio">
                                     <input :value="enums.statusEnum.ACTIVE" v-model="props.form.status" id="active"
-                                           type="radio" class="custom-radio-field"/>
+                                        type="radio" class="custom-radio-field" />
                                     <span class="custom-radio-span"></span>
                                 </div>
                                 <label for="active" class="db-field-label">{{
-                                        $t("label.active")
-                                    }}</label>
+                                    $t("label.active")
+                                }}</label>
                             </div>
                             <div class="db-field-radio">
                                 <div class="custom-radio">
                                     <input :value="enums.statusEnum.INACTIVE" v-model="props.form.status" type="radio"
-                                           id="inactive" class="custom-radio-field"/>
+                                        id="inactive" class="custom-radio-field" />
                                     <span class="custom-radio-span"></span>
                                 </div>
                                 <label for="inactive" class="db-field-label">{{
-                                        $t("label.inactive")
-                                    }}</label>
+                                    $t("label.inactive")
+                                }}</label>
                             </div>
                         </div>
                         <small class="db-field-alert" v-if="errors.status">{{
-                                errors.status[0]
-                            }}</small>
+                            errors.status[0]
+                        }}</small>
                     </div>
                     <div class="form-col-12 sm:form-col-6">
                         <label for="password" class="db-field-title required">{{
-                                $t("label.password")
-                            }}</label>
-                        <input v-model="props.form.password" v-bind:class="errors.password ? 'invalid' : ''"
-                               type="password"
-                               id="password" class="db-field-control" autocomplete="off"/>
+                            $t("label.password")
+                        }}</label>
+                        <input v-model="props.form.password" v-bind:class="errors.password ? 'invalid' : ''" type="password"
+                            id="password" class="db-field-control" autocomplete="off" />
                         <small class="db-field-alert" v-if="errors.password">{{
-                                errors.password[0]
-                            }}</small>
+                            errors.password[0]
+                        }}</small>
                     </div>
                     <div class="form-col-12 sm:form-col-6">
                         <label for="password_confirmation" class="db-field-title required">{{
-                                $t("label.confirm_password")
-                            }}</label>
-                        <input v-model="props.form.password_confirmation" v-bind:class="
-                            errors.password_confirmation ? 'invalid' : ''
-                        " type="password" id="password_confirmation" class="db-field-control" autocomplete="off"/>
+                            $t("label.confirm_password")
+                        }}</label>
+                        <input v-model="props.form.password_confirmation" v-bind:class="errors.password_confirmation ? 'invalid' : ''
+                                " type="password" id="password_confirmation" class="db-field-control" autocomplete="off" />
                         <small class="db-field-alert" v-if="errors.password_confirmation">{{
-                                errors.password_confirmation[0]
-                            }}</small>
+                            errors.password_confirmation[0]
+                        }}</small>
                     </div>
                     <div class="form-col-12">
                         <div class="flex flex-wrap gap-3 mt-4">
@@ -132,15 +128,12 @@ import appService from "../../../services/appService";
 
 export default {
     name: "CustomerCreateComponent",
-    components: {SmSidebarModalCreateComponent, LoadingComponent},
+    components: { SmSidebarModalCreateComponent, LoadingComponent },
     props: ["props"],
     data() {
         return {
             loading: {
                 isActive: false,
-            },
-            addButton: {
-                title: this.$t("button.add_customer"),
             },
             enums: {
                 statusEnum: statusEnum,
@@ -153,6 +146,11 @@ export default {
             flag: "",
             country_code: "",
         };
+    },
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_customer') };
+        }
     },
     mounted() {
         this.loading.isActive = true;

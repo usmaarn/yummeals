@@ -139,7 +139,15 @@ Route::prefix('auth')->middleware(['installed', 'apiKey', 'localization'])->name
             Route::post('/delete-account', [DeactivateController::class, 'deleteAccount']);
         });
     });
+
+    Route::post('/authcheck', function () {
+        if (Auth::check()) {
+            return response()->json(['status' => true]);
+        }
+        return response()->json(['status' => false]);
+    });
 });
+
 
 /* all routes must be singular word*/
 Route::prefix('profile')->name('profile.')->middleware(['installed', 'apiKey', 'auth:sanctum', 'localization'])->group(function () {
@@ -198,6 +206,7 @@ Route::prefix('admin')->name('admin.')->middleware(['installed', 'apiKey', 'auth
             Route::post('/', [ItemCategoryController::class, 'store']);
             Route::match(['post', 'put', 'patch'], '/{itemCategory}', [ItemCategoryController::class, 'update']);
             Route::delete('/{itemCategory}', [ItemCategoryController::class, 'destroy']);
+            Route::post('/sort/category', [ItemCategoryController::class, 'sortCategory']);
         });
 
         Route::prefix('item-attribute')->name('item-attribute.')->group(function () {
@@ -342,6 +351,9 @@ Route::prefix('admin')->name('admin.')->middleware(['installed', 'apiKey', 'auth
 
     Route::prefix('subscriber')->name('subscriber.')->group(function () {
         Route::get('/', [SubscriberController::class, 'index']);
+        Route::delete('/{subscriber}', [SubscriberController::class, 'destroy']);
+        Route::get('/export', [SubscriberController::class, 'export']);
+        Route::post('/send-email', [SubscriberController::class, 'sendEmail']);
     });
 
     Route::prefix('customer')->name('customer.')->group(function () {

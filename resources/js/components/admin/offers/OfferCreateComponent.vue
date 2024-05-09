@@ -121,9 +121,6 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_offer"),
-            },
             enums: {
                 statusEnum: statusEnum,
                 statusEnumArray: {
@@ -135,7 +132,11 @@ export default {
             errors: {},
         };
     },
-    computed: {},
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_offer') };
+        }
+    },
     methods: {
         floatNumber(e) {
             return appService.floatNumber(e);

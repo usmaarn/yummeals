@@ -53,7 +53,7 @@ class Bkash extends PaymentAbstract
             $request['mode']                  = '0011';
             $request['payerReference']        = $order->order_serial_no;
             $request['currency']              = $currencyCode;
-            $request['amount']                = (int)number_format($order->total);
+            $request['amount']                = (float)$order->total;
             $request['merchantInvoiceNumber'] = $order->order_serial_no;
             $request['callbackURL'] = route('payment.success', ['order' => $order, 'paymentGateway' => 'bkash']);
 
@@ -104,7 +104,7 @@ class Bkash extends PaymentAbstract
             }
         } catch (Exception $e) {
             Log::info($e->getMessage());
-            return redirect()->route('payment.fail', ['order' => $order, 'paymentGateway' => 'paypal'])->with(
+            return redirect()->route('payment.fail', ['order' => $order, 'paymentGateway' => 'bkash'])->with(
                 'error',
                 $e->getMessage()
             );

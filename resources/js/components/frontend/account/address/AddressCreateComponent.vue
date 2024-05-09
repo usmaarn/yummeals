@@ -101,18 +101,20 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_new"),
-            },
             mapKey: "create-update",
             labelEnum: labelEnum,
             switchLabel: "",
             errors: {},
         }
     },
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_new') };
+        }
+    },
     methods: {
         add: function () {
-            appService.modalShow();
+            appService.modalShow("#address");
         },
         changeSwitchLabel: function (id) {
             this.props.switchLabel = id;

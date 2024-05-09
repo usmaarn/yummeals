@@ -134,8 +134,8 @@
                         <option :value="discountTypeEnum.FIXED">{{ $t("label.fixed") }}</option>
                     </select>
                 </div>
-                <input v-model="discount" type="text" :placeholder="$t('label.add_discount')"
-                    class="w-full h-full border-t border-b px-3 border-[#EFF0F6]">
+                <input v-on:keypress="floatNumber($event)" v-model="discount" type="text"
+                    :placeholder="$t('label.add_discount')" class="w-full h-full border-t border-b px-3 border-[#EFF0F6]">
                 <button @click.prevent="applyDiscount" type="submit"
                     class="flex-shrink-0 w-16 h-full text-sm font-medium font-rubik capitalize rounded-tr rounded-br text-white bg-[#008BBA]">
                     {{ $t('button.apply') }}
@@ -264,8 +264,8 @@ export default {
             },
             categoryProps: {
                 paginate: 0,
-                order_column: "id",
-                order_type: "asc",
+                order_column: 'sort',
+                order_type: 'asc',
                 status: statusEnum.ACTIVE
             },
 
@@ -340,6 +340,9 @@ export default {
         onlyNumber: function (e) {
             return appService.onlyNumber(e);
         },
+        floatNumber: function (e) {
+            return appService.floatNumber(e);
+        },
         currencyFormat: function (amount, decimal, currency, position) {
             return appService.currencyFormat(amount, decimal, currency, position);
         },
@@ -393,7 +396,7 @@ export default {
                 if (this.subtotal < this.discount) {
                     this.discountErrorMessage = this.$t('message.discount_fixed_error_message');
                 } else {
-                    this.checkoutProps.form.discount = parseFloat(this.discount).toFixed(this.setting.site_digit_after_decimal_point);
+                    this.checkoutProps.form.discount = parseFloat(+this.discount).toFixed(this.setting.site_digit_after_decimal_point);
                     this.$store.dispatch('posCart/discount', this.checkoutProps.form.discount).then().catch();
                 }
 

@@ -171,9 +171,6 @@ export default {
             loading: {
                 isActive: false
             },
-            addButton: {
-                title: this.$t("button.add_item")
-            },
             enums: {
                 statusEnum: statusEnum,
                 itemTypeEnum: itemTypeEnum,
@@ -196,6 +193,9 @@ export default {
         }
     },
     computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_item') };
+        },
         itemCategories: function () {
             return this.$store.getters['itemCategory/lists'];
         },
@@ -206,7 +206,7 @@ export default {
     mounted() {
         this.loading.isActive = true;
         this.$store.dispatch('itemCategory/lists', {
-            order_column: 'id',
+            order_column: 'sort',
             order_type: 'asc',
             status: statusEnum.ACTIVE
         });

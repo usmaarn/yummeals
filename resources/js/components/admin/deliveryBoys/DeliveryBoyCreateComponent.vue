@@ -37,8 +37,7 @@
                                 </button>
                             </div>
                             <input v-model="props.form.phone" v-on:keypress="phoneNumber($event)" v-bind:class="errors.phone
-                                ? 'invalid' : ''" type="text" id="phone"
-                                class="pl-2 text-sm w-full h-full" />
+                                ? 'invalid' : ''" type="text" id="phone" class="pl-2 text-sm w-full h-full" />
                         </div>
                         <small class="db-field-alert" v-if="errors.phone">
                             {{ errors.phone[0] }}
@@ -147,9 +146,6 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_delivery_boy"),
-            },
             enums: {
                 statusEnum: statusEnum,
                 statusEnumArray: {
@@ -163,6 +159,9 @@ export default {
         };
     },
     computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_delivery_boy') };
+        },
         defaultAccess: function () {
             return this.$store.getters["defaultAccess/show"];
         },

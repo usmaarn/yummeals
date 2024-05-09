@@ -81,9 +81,9 @@
                     class="webcart hidden lg:flex items-center justify-center gap-1.5 w-fit rounded-3xl capitalize text-sm font-medium h-8 px-3 transition text-white bg-heading">
                     <i class="lab lab-bag-2 lab-font-size-17"></i>
                     <span class="whitespace-nowrap">{{
-                        currencyFormat(subtotal, setting.site_digit_after_decimal_point,
-                            setting.site_default_currency_symbol, setting.site_currency_position)
-                    }}</span>
+        currencyFormat(subtotal, setting.site_digit_after_decimal_point,
+            setting.site_default_currency_symbol, setting.site_currency_position)
+    }}</span>
                 </button>
                 <router-link v-if="!logged"
                     class="hidden lg:flex items-center justify-center gap-1 w-fit rounded-3xl capitalize text-sm font-medium h-8 px-3 transition text-white bg-primary"
@@ -100,31 +100,41 @@
                         <i class="lab lab-arrow-down-2 text-xs ml-1.5 lab-font-size-15"></i>
                     </button>
                     <div
-                        class="dropdown-list absolute top-12 ltr:right-0 rtl:left-0 z-[60] rounded-xl w-[360px] p-4 shadow-paper bg-white">
-                        <div class="w-fit mx-auto text-center mb-3">
+                        class="dropdown-list w-80 absolute top-12 ltr:right-0 rtl:left-0 z-[60] rounded-xl shadow-paper bg-white">
+                        <div class="flex items-center gap-3 p-4 mb-2">
                             <figure
-                                class="relative z-10 w-[98px] h-[98px] border-2 border-dashed rounded-full inline-flex items-center justify-center border-white bg-gradient-to-t from-[#FF7A00] to-[#FF016C]
-                                                                                                                                                                                            before:absolute before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-24 before:h-24 before:rounded-full before:-z-10 before:bg-white">
-                                <img class="w-[90px] h-[90px] rounded-full shadow-avatar" :src="profile.image" alt="avatar">
+                                class="flex-shrink-0 relative z-10 w-[68px] h-[68px] rounded-full border-2 border-dashed border-white bg-gradient-to-t from-[#FF7A00] to-[#FF016C] before:absolute before:inset-0 before:-z-10 before:rounded-full before:scale-[1.03] before:bg-white">
+                                <a
+                                    class="relative w-full h-full scale-[0.98] overflow-hidden shadow-avatar rounded-full">
+                                    <img class="w-full h-full rounded-full object-cover" :src="profile.image"
+                                        alt="avatar">
+                                    <label for="avatar"
+                                        class="block absolute bottom-0 w-full flex items-center justify-center py-1 cursor-pointer bg-white/90">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M20.97 1H18.03C16.76 1 16 1.76 16 3.03V5.97C16 7.24 16.76 8 18.03 8H20.97C22.24 8 23 7.24 23 5.97V3.03C23 1.76 22.24 1 20.97 1ZM21.19 4.31C21.07 4.43 20.91 4.49 20.75 4.49C20.59 4.49 20.43 4.43 20.31 4.31L20.13 4.13V6.37C20.13 6.72 19.85 7 19.5 7C19.15 7 18.87 6.72 18.87 6.37V4.13L18.69 4.31C18.45 4.55 18.05 4.55 17.81 4.31C17.57 4.07 17.57 3.67 17.81 3.43L19.06 2.18C19.11 2.13 19.18 2.09 19.25 2.06C19.27 2.05 19.29 2.05 19.31 2.04C19.36 2.02 19.41 2.01 19.47 2.01C19.49 2.01 19.51 2.01 19.53 2.01C19.6 2.01 19.66 2.02 19.73 2.05C19.74 2.05 19.74 2.05 19.75 2.05C19.82 2.08 19.88 2.12 19.93 2.17C19.94 2.18 19.94 2.18 19.95 2.18L21.2 3.43C21.44 3.67 21.44 4.07 21.19 4.31Z"
+                                                fill="#292D32" />
+                                            <path
+                                                d="M8.99914 10.38C10.3136 10.38 11.3791 9.31443 11.3791 8C11.3791 6.68556 10.3136 5.62 8.99914 5.62C7.6847 5.62 6.61914 6.68556 6.61914 8C6.61914 9.31443 7.6847 10.38 8.99914 10.38Z"
+                                                fill="#292D32" />
+                                            <path
+                                                d="M20.97 8H20.5V12.61L20.37 12.5C19.59 11.83 18.33 11.83 17.55 12.5L13.39 16.07C12.61 16.74 11.35 16.74 10.57 16.07L10.23 15.79C9.52 15.17 8.39 15.11 7.59 15.65L3.85 18.16C3.63 17.6 3.5 16.95 3.5 16.19V7.81C3.5 4.99 4.99 3.5 7.81 3.5H16V3.03C16 2.63 16.07 2.29 16.23 2H7.81C4.17 2 2 4.17 2 7.81V16.19C2 17.28 2.19 18.23 2.56 19.03C3.42 20.93 5.26 22 7.81 22H16.19C19.83 22 22 19.83 22 16.19V7.77C21.71 7.93 21.37 8 20.97 8Z"
+                                                fill="#292D32" />
+                                        </svg>
+                                        <input type="file" id="avatar" @change="saveImage" ref="imageProperty"
+                                            accept="image/png, image/jpeg, image/jpg"
+                                            class="opacity-0 cursor-pointer absolute inset-0 -z-10">
+                                    </label>
+                                </a>
                             </figure>
-                            <label for="imageProperty"
-                                class="block w-11 h-11 mx-auto -mt-7 mb-1 relative z-10 rounded-full border-2 cursor-pointer bg-heading border-white">
-                                <input @change="saveImage" id="imageProperty" ref="imageProperty"
-                                    accept="image/png, image/jpeg, image/jpg" type="file"
-                                    class="w-full h-full rounded-full opacity-0 cursor-pointer">
-                                <i
-                                    class="lab lab-edit-2 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 -z-10 lab-font-size-24 lab-font-color-1"></i>
-                            </label>
-                            <h3 class="font-medium text-sm leading-6 capitalize">{{
-                                textShortener(profile.name, 20)
-                            }}</h3>
-                            <p class="text-xs mb-0.5">{{ profile.email }}</p>
-                            <p class="text-xs">{{ profile.phone }}</p>
-                            <h3 class="font-medium text-sm leading-6 capitalize mb-0.5">{{
-                                profile.currency_balance
-                            }}</h3>
+                            <figcaption class="flex-auto">
+                                <h3 class="text-sm font-medium capitalize mb-0.5">{{ profile.name }}</h3>
+                                <h4 class="text-xs text-paragraph mb-1.5">{{ profile.email }}</h4>
+                                <h5 class="text-sm font-medium">{{ profile.currency_balance }}</h5>
+                            </figcaption>
                         </div>
-                        <nav>
+                        <nav class="px-4">
                             <router-link
                                 v-if="profile.role_id !== enums.roleEnum.CUSTOMER && Object.keys(authDefaultPermission).length > 0"
                                 :to="{ name: 'admin.dashboard' }"
@@ -173,6 +183,22 @@
             </div>
         </div>
     </header>
+
+    <div id="language" class="modal">
+        <div class="modal-dialog max-w-xs">
+            <div class="modal-header">
+                <h3 class="modal-title">{{ $t('menu.languages') }}</h3>
+                <button class="modal-close fa-regular fa-circle-xmark" @click="hideLanguageModal()"></button>
+            </div>
+            <nav class="p-2">
+                <button @click="changeLanguage(language.id, language.code)" v-for="language in languages" type="button"
+                    class="w-full flex items-center gap-2 py-1.5 px-2.5 rounded-md cursor-pointer hover:bg-gray-100">
+                    <img :src="language.image" alt="flag" class="w-4 h-4 rounded-full">
+                    <span class="text-heading capitalize text-sm">{{ language.name }}</span>
+                </button>
+            </nav>
+        </div>
+    </div>
 
     <div id="order" v-if="orderNotificationStatus" ref="orderNotificationModal" class="modal active ff-modal">
         <div class="modal-dialog max-w-[360px] p-6 text-center relative">
@@ -236,7 +262,7 @@ export default {
             categoryProps: {
                 search: {
                     paginate: 0,
-                    order_column: 'id',
+                    order_column: 'sort',
                     order_type: 'asc',
                     status: statusEnum.ACTIVE
                 },
@@ -380,12 +406,16 @@ export default {
             this.$store.dispatch("globalState/set", { branch_id: id });
         },
         changeLanguage: function (id, code) {
+            this.hideLanguageModal();
             this.defaultLanguage = id;
             this.$store.dispatch("globalState/set", { language_id: id, language_code: code }).then(res => {
                 this.$store.dispatch('frontendLanguage/show', id).then(res => {
                     this.$i18n.locale = res.data.data.code;
                 }).catch();
             }).catch();
+        },
+        hideLanguageModal: function () {
+            appService.modalHide('#language');
         },
         logout: function () {
             this.$store.dispatch("logout").then(res => {

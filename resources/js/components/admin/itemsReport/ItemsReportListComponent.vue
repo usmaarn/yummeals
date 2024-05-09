@@ -232,7 +232,7 @@ export default {
         }).catch((err) => {
             this.loading.isActive = false;
         });
-        this.$store.dispatch('itemCategory/lists', this.props.search).then(res => {
+        this.$store.dispatch('itemCategory/lists', {paginate:0}).then(res => {
             this.loading.isActive = false;
         }).catch((err) => {
             this.loading.isActive = false;

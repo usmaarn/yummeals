@@ -88,9 +88,6 @@ export default {
             loading: {
                 isActive: false
             },
-            addButton: {
-                title: this.$t("button.add_push_notification")
-            },
             form: {
                 title: "",
                 description: "",
@@ -111,6 +108,9 @@ export default {
         }
     },
     computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_push_notification') };
+        },
         roles: function () {
             return this.$store.getters['role/lists'];
         },

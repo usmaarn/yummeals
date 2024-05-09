@@ -19,8 +19,9 @@
                         <th class="db-table-head-th">{{ $t('label.action') }}</th>
                     </tr>
                 </thead>
-                <tbody class="db-table-body" v-if="itemCategories.length > 0">
-                    <tr class="db-table-body-tr" v-for="itemCategory in itemCategories" :key="itemCategory">
+                <draggable tag="tbody" class="db-table-body" v-if="categories.length > 0" v-model="categories"
+                    @end="sortCategory">
+                    <tr class="db-table-body-tr" v-for="itemCategory in categories" :key="itemCategory">
                         <td class="db-table-body-td">{{ itemCategory.name }}</td>
                         <td class="db-table-body-td">
                             <span :class="statusClass(itemCategory.status)">
@@ -35,7 +36,7 @@
                             </div>
                         </td>
                     </tr>
-                </tbody>
+                </draggable>
             </table>
         </div>
 
@@ -61,6 +62,7 @@ import TableLimitComponent from "../../components/TableLimitComponent";
 import SmDeleteComponent from "../../components/buttons/SmDeleteComponent";
 import SmModalEditComponent from "../../components/buttons/SmModalEditComponent";
 import SmViewComponent from "../../components/buttons/SmViewComponent";
+import { VueDraggableNext } from 'vue-draggable-next'
 
 export default {
     name: "ItemCategoryListComponent",
@@ -73,7 +75,8 @@ export default {
         LoadingComponent,
         SmDeleteComponent,
         SmModalEditComponent,
-        SmViewComponent
+        SmViewComponent,
+        draggable: VueDraggableNext,
     },
     data() {
         return {
@@ -97,10 +100,11 @@ export default {
                     paginate: 1,
                     page: 1,
                     per_page: 10,
-                    order_column: 'id',
-                    order_type: 'desc',
+                    order_column: 'sort',
+                    order_type: 'asc',
                 }
-            }
+            },
+            categories: []
         }
     },
     computed: {
@@ -128,6 +132,7 @@ export default {
             this.loading.isActive = true;
             this.props.search.page = page;
             this.$store.dispatch('itemCategory/lists', this.props.search).then(res => {
+                this.categories = res.data.data;
                 this.loading.isActive = false;
             }).catch((err) => {
                 this.loading.isActive = false;
@@ -162,6 +167,25 @@ export default {
             }).catch((err) => {
                 this.loading.isActive = false;
             })
+        },
+        sortCategory: function () {
+            const sortedIds = this.categories.map(category => category.id);
+            this.$store.dispatch('itemCategory/sortCategory', {
+                form: { category_id: sortedIds },
+                search: this.props.search
+            }).then((res) => {
+                this.list();
+            }).catch((err) => {
+                alertService.error(err.response.data.message);
+            })
+        },
+    },
+    watch: {
+        itemCategories: {
+            deep: true,
+            handler(itemCategory) {
+                this.categories = itemCategory;
+            }
         }
     }
 }

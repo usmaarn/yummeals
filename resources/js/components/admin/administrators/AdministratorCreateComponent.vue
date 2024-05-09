@@ -1,6 +1,6 @@
 <template>
-    <LoadingComponent :props="loading"/>
-    <SmSidebarModalCreateComponent :props="addButton"/>
+    <LoadingComponent :props="loading" />
+    <SmSidebarModalCreateComponent :props="addButton" />
 
     <div id="sidebar" class="drawer">
         <div class="drawer-header">
@@ -12,25 +12,24 @@
                 <div class="form-row">
                     <div class="form-col-12 sm:form-col-6">
                         <label for="name" class="db-field-title required">{{
-                                $t("label.name")
-                            }}</label>
-                        <input v-model="props.form.name" v-bind:class="errors.name ? 'invalid' : ''" type="text"
-                               id="name"
-                               class="db-field-control"/>
+                            $t("label.name")
+                        }}</label>
+                        <input v-model="props.form.name" v-bind:class="errors.name ? 'invalid' : ''" type="text" id="name"
+                            class="db-field-control" />
                         <small class="db-field-alert" v-if="errors.name">{{
-                                errors.name[0]
-                            }}</small>
+                            errors.name[0]
+                        }}</small>
                     </div>
 
                     <div class="form-col-12 sm:form-col-6">
                         <label for="email" class="db-field-title required">{{
-                                $t("label.email")
-                            }}</label>
+                            $t("label.email")
+                        }}</label>
                         <input v-model="props.form.email" v-bind:class="errors.email ? 'invalid' : ''" type="text"
-                               id="email" class="db-field-control"/>
+                            id="email" class="db-field-control" />
                         <small class="db-field-alert" v-if="errors.email">{{
-                                errors.email[0]
-                            }}</small>
+                            errors.email[0]
+                        }}</small>
                     </div>
 
                     <div class="form-col-12 sm:form-col-6">
@@ -47,8 +46,7 @@
 
                             </div>
                             <input v-model="props.form.phone" v-on:keypress="phoneNumber($event)" v-bind:class="errors.phone
-                                ? 'invalid' : ''" type="text" id="phone"
-                                   class="pl-2 text-sm w-full h-full"/>
+                                ? 'invalid' : ''" type="text" id="phone" class="pl-2 text-sm w-full h-full" />
                         </div>
 
                         <small class="db-field-alert" v-if="errors.phone">
@@ -58,82 +56,80 @@
 
                     <div class="form-col-12 sm:form-col-6">
                         <label class="db-field-title required" for="active">{{
-                                $t("label.status")
-                            }}</label>
+                            $t("label.status")
+                        }}</label>
                         <div class="db-field-radio-group">
                             <div class="db-field-radio">
                                 <div class="custom-radio">
                                     <input :value="enums.statusEnum.ACTIVE" v-model="props.form.status" id="active"
-                                           type="radio" class="custom-radio-field"/>
+                                        type="radio" class="custom-radio-field" />
                                     <span class="custom-radio-span"></span>
                                 </div>
                                 <label for="active" class="db-field-label">{{
-                                        $t("label.active")
-                                    }}</label>
+                                    $t("label.active")
+                                }}</label>
                             </div>
                             <div class="db-field-radio">
                                 <div class="custom-radio">
                                     <input :value="enums.statusEnum.INACTIVE" v-model="props.form.status" type="radio"
-                                           id="inactive" class="custom-radio-field"/>
+                                        id="inactive" class="custom-radio-field" />
                                     <span class="custom-radio-span"></span>
                                 </div>
                                 <label for="inactive" class="db-field-label">{{
-                                        $t("label.inactive")
-                                    }}</label>
+                                    $t("label.inactive")
+                                }}</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-col-12 sm:form-col-6">
                         <label for="password" class="db-field-title required">{{
-                                $t("label.password")
-                            }}</label>
-                        <input v-model="props.form.password" v-bind:class="errors.password ? 'invalid' : ''"
-                               type="password"
-                               id="password" class="db-field-control" autocomplete="off"/>
+                            $t("label.password")
+                        }}</label>
+                        <input v-model="props.form.password" v-bind:class="errors.password ? 'invalid' : ''" type="password"
+                            id="password" class="db-field-control" autocomplete="off" />
                         <small class="db-field-alert" v-if="errors.password">{{
-                                errors.password[0]
-                            }}</small>
+                            errors.password[0]
+                        }}</small>
                     </div>
 
                     <div class="form-col-12 sm:form-col-6">
                         <label for="password_confirmation" class="db-field-title required">{{
-                                $t("label.password_confirmation")
-                            }}</label>
+                            $t("label.password_confirmation")
+                        }}</label>
                         <input v-model="props.form.password_confirmation"
-                               v-bind:class="errors.password_confirmation ? 'invalid' : ''" type="password"
-                               id="password_confirmation" class="db-field-control" autocomplete="off"/>
+                            v-bind:class="errors.password_confirmation ? 'invalid' : ''" type="password"
+                            id="password_confirmation" class="db-field-control" autocomplete="off" />
                         <small class="db-field-alert" v-if="errors.password_confirmation">{{
-                                errors.password_confirmation[0]
-                            }}</small>
+                            errors.password_confirmation[0]
+                        }}</small>
                     </div>
 
                     <div class="form-col-12 sm:form-col-6">
                         <label class="db-field-title required" for="current_branch">{{
-                                $t("label.branch")
-                            }}</label>
+                            $t("label.branch")
+                        }}</label>
                         <div class="db-field-radio-group" v-if="branches.length > 1 && authBranch === 0">
                             <div class="db-field-radio">
                                 <div class="custom-radio">
                                     <input class="custom-radio-field" v-model="props.form.branch_id" type="radio"
-                                           v-bind:class="errors.branch_id ? 'is-invalid' : ''" id="current_branch"
-                                           :value="defaultAccess.branch_id" :checked="
-                                        props.form.branch_id === '' ||
-                                        props.form.branch_id === null ||
-                                        props.form.branch_id ===
-                                        defaultAccess.branch_id
-                                    "/>
+                                        v-bind:class="errors.branch_id ? 'is-invalid' : ''" id="current_branch"
+                                        :value="defaultAccess.branch_id" :checked="props.form.branch_id === '' ||
+                                            props.form.branch_id === null ||
+                                            props.form.branch_id ===
+                                            defaultAccess.branch_id
+                                            " />
                                     <span class="custom-radio-span"></span>
                                 </div>
                                 <label for="current_branch" class="db-field-label">{{
-                                        $t("label.current_branch")
-                                    }}</label>
+                                    $t("label.current_branch")
+                                }}</label>
                             </div>
                             <div class="db-field-radio">
                                 <div class="custom-radio">
                                     <input class="custom-radio-field" v-model="props.form.branch_id" type="radio"
-                                           v-bind:class="errors.branch_id ? 'is-invalid' : ''" id="all_branch" value="0"
-                                           :checked="props.form.branch_id === 0"/>
+                                        v-bind:class="errors.branch_id ? 'is-invalid' : ''" id="all_branch" value="0"
+                                        :checked="props.form.branch_id === 0" />
                                     <span class="custom-radio-span"></span>
                                 </div>
                                 <label for="all_branch" class="db-field-label">{{ $t("label.all_branch") }}</label>
@@ -177,9 +173,6 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_administrator"),
-            },
             enums: {
                 statusEnum: statusEnum,
                 statusEnumArray: {
@@ -219,6 +212,9 @@ export default {
         });
     },
     computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_administrator') };
+        },
         defaultAccess: function () {
             return this.$store.getters["defaultAccess/show"];
         },

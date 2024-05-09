@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    {{ trans('For Babiato') }}
+    {{ trans('installer.license.title') }}
 @endsection
 
 @section('container')
@@ -31,8 +31,8 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="mb-4">
             <label class="text-sm font-medium block mb-1.5 text-heading">
-                Put anything and click the button<span class="text-[#E93C3C]">*</span><br>
-                <font color="red">By Andrew, Babiato.</font>
+                {{ trans('installer.license.label.license_key') }} <span class="text-[#E93C3C]">*</span>
+                <span class="text-primary modal-show underline cursor-pointer">({{ trans('installer.license.active_process') }})</span>
             </label>
             <input name="license_key" type="text" value="{{ old('license_key') }}"
                    class="w-full h-12 rounded-lg px-4 border border-[#D9DBE9]">

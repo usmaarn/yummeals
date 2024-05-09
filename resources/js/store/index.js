@@ -88,6 +88,7 @@ import {tableCart} from "./modules/table/tableCart";
 import {tableDiningTable} from "./modules/table/tableDiningTable";
 import {tableDiningOrder} from "./modules/table/tableDiningOrder";
 import { tableOrder } from './modules/tableOrder';
+import { subscriber } from './modules/subscriber';
 
 
 export default new createStore({
@@ -181,7 +182,8 @@ export default new createStore({
         tableCart,
         tableDiningTable,
         tableDiningOrder,
-        tableOrder
+        tableOrder,
+        subscriber
     },
     plugins: [
         createPersistedState({

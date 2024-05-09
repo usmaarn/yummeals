@@ -44,6 +44,7 @@ import TableNavbarComponent from "./layouts/table/TableNavBarComponent.vue";
 import TableFooterComponent from "./layouts/table/TableFooterComponent.vue";
 import TableCartComponent from "./layouts/table/TableCartComponent.vue";
 import displayModeEnum from "../enums/modules/displayModeEnum";
+import env from "../config/env";
 
 export default {
   name: "DefaultComponent",
@@ -83,6 +84,17 @@ export default {
         });
       })
       .catch();
+
+
+    if(env.DEMO ==="true" ||  env.DEMO ===true || env.DEMO ==="1" || env.DEMO ===1)
+    {
+      this.$store.dispatch("authcheck").then(res => {
+      if (res.data.status === false) {
+        this.$router.push({ name: "frontend.home" });
+      };
+    }).catch();
+    }
+
   },
   watch: {
     $route(e) {

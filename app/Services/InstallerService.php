@@ -78,13 +78,28 @@ class InstallerService
     }
 
     public function licenseCodeChecker($array)
-{
-    // success response without contacting the license server.
-    return (object)[
-        'status'  => true, // successful license check.
-        'message' => 'License verification skipped for development.'
-    ];
-}
+    {
+        try {
+            $payload = [
+                'license_code' => $array['license_key'],
+                'product_id'   => config('product.itemId'),
+                'domain'       => AppLibrary::domain(url('')),
+                'purpose'      => 'install',
+                'version'      => config('product.version')
+            ];
+            if (isset($array['purpose'])) {
+                $payload['purpose'] = $array['purpose'];
+            }
+            $apiUrl   = config('product.licenseCodeCheckerUrl');
+            $response = Http::post($apiUrl . '/api/check-installer-license', $payload);
+            return AppLibrary::licenseApiResponse($response);
+        } catch (\Exception $exception) {
+            return (object)[
+                'status'  => false,
+                'message' => $exception->getMessage()
+            ];
+        }
+    }
 
     public function finalSetup(): void
     {
@@ -107,3 +122,4 @@ class InstallerService
         Artisan::call('optimize:clear');
     }
 }
+

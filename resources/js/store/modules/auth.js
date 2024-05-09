@@ -51,6 +51,18 @@ export const auth = {
                 });
             });
         },
+        authcheck: function (context, payload) {
+            return new Promise((resolve, reject) => {
+                axios.post('auth/authcheck', payload).then((res) => {
+                    if (res.data.status === false){
+                        context.commit('authLogout');
+                    };
+                    resolve(res);
+                }).catch((err) => {
+                    reject(err);
+                });
+            });
+        },
         logout: function (context) {
             return new Promise((resolve, reject) => {
                 axios.post('auth/logout').then((res) => {

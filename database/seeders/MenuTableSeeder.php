@@ -169,6 +169,17 @@ class MenuTableSeeder extends Seeder
                         'created_at' => now(),
                         'updated_at' => now()
 
+                    ],
+                    [
+                        'name'       => 'Subscribers',
+                        'language'   => 'subscribers',
+                        'url'        => 'subscribers',
+                        'icon'       => 'lab lab-subscribers',
+                        'priority'   => 100,
+                        'status'     => 1,
+                        'created_at' => now(),
+                        'updated_at' => now()
+
                     ]
                 ]
             ],

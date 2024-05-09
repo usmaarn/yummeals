@@ -43,8 +43,8 @@
                                     <div class="custom-radio">
                                         <input type="radio" v-on:click="
                                             this.props.status = false;
-                                        this.props.form.label = $t('label.home');" v-model="props.switchLabel" id="home"
-                                            :value="labelEnum.HOME" class="custom-radio-field" />
+                                        this.props.form.label = $t('label.home');" v-model="props.switchLabel"
+                                            id="home" :value="labelEnum.HOME" class="custom-radio-field" />
                                         <span class="custom-radio-span"></span>
                                     </div>
                                     <label for="home" class="db-field-label">{{ $t("label.home") }}</label>
@@ -53,8 +53,8 @@
                                     <div class="custom-radio">
                                         <input type="radio" v-on:click="
                                             this.props.status = false;
-                                        this.props.form.label = $t('label.work');" class="custom-radio-field" v-model="props.switchLabel"
-                                            id="work" :value="labelEnum.WORK" />
+                                        this.props.form.label = $t('label.work');" class="custom-radio-field"
+                                            v-model="props.switchLabel" id="work" :value="labelEnum.WORK" />
                                         <span class="custom-radio-span"></span>
                                     </div>
                                     <label for="work" class="db-field-label">{{ $t("label.work") }}</label>
@@ -64,8 +64,8 @@
                                         <input type="radio" v-on:click="
                                             this.props.status = true;
                                         this.props.form.label = '';
-                                        this.errors.label = '';" class="custom-radio-field" v-model="props.switchLabel" id="other"
-                                            :value="labelEnum.OTHER" />
+                                        this.errors.label = '';" class="custom-radio-field" v-model="props.switchLabel"
+                                            id="other" :value="labelEnum.OTHER" />
                                         <span class="custom-radio-span"></span>
                                     </div>
                                     <label for="other" class="db-field-label">
@@ -127,13 +127,15 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_address"),
-            },
             labelEnum: labelEnum,
             switchLabel: "",
             errors: {},
         };
+    },
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_address') };
+        }
     },
     methods: {
         location: function (e) {

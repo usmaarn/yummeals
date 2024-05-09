@@ -126,9 +126,6 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_language"),
-            },
             enums: {
                 statusEnum: statusEnum,
                 displayModeEnum: displayModeEnum,
@@ -140,6 +137,11 @@ export default {
             image: "",
             errors: {},
         };
+    },
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_language') };
+        }
     },
     methods: {
         changeImage: function (e) {

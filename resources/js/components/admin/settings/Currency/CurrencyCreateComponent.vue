@@ -47,8 +47,8 @@
                             <div class="db-field-radio-group">
                                 <div class="db-field-radio">
                                     <div class="custom-radio">
-                                        <input :value="enums.askEnum.YES" v-model="props.form.is_cryptocurrency"
-                                            id="yes" type="radio" class="custom-radio-field" />
+                                        <input :value="enums.askEnum.YES" v-model="props.form.is_cryptocurrency" id="yes"
+                                            type="radio" class="custom-radio-field" />
                                         <span class="custom-radio-span"></span>
                                     </div>
                                     <label for="yes" class="db-field-label">{{
@@ -57,8 +57,8 @@
                                 </div>
                                 <div class="db-field-radio">
                                     <div class="custom-radio">
-                                        <input :value="enums.askEnum.NO" v-model="props.form.is_cryptocurrency"
-                                            type="radio" id="no" class="custom-radio-field" />
+                                        <input :value="enums.askEnum.NO" v-model="props.form.is_cryptocurrency" type="radio"
+                                            id="no" class="custom-radio-field" />
                                         <span class="custom-radio-span"></span>
                                     </div>
                                     <label for="no" class="db-field-label">{{
@@ -72,9 +72,8 @@
                             <label for="exchange_rate" class="db-field-title">{{
                                 $t("label.exchange_rate")
                             }}</label>
-                            <input v-model="props.form.exchange_rate" v-bind:class="
-                                errors.exchange_rate ? 'invalid' : ''
-                            " type="text" id="exchange_rate" class="db-field-control" />
+                            <input v-model="props.form.exchange_rate" v-bind:class="errors.exchange_rate ? 'invalid' : ''
+                                " type="text" id="exchange_rate" class="db-field-control" />
                             <small class="db-field-alert" v-if="errors.exchange_rate">{{
                                 errors.exchange_rate[0]
                             }}</small>
@@ -115,9 +114,6 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_currency"),
-            },
             enums: {
                 askEnum: askEnum,
                 askEnumArray: {
@@ -127,6 +123,11 @@ export default {
             },
             errors: {},
         };
+    },
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_currency') };
+        }
     },
     methods: {
         reset: function () {

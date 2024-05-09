@@ -28,6 +28,7 @@ import creditBalanceReportRoutes from "./modules/creditBalanceReportRoutes";
 import tableOrderRoutes from "./modules/tableOrderRoutes";
 import adminTableOrderRoutes from "./modules/adminTableOrderRoutes";
 import diningTableRoutes from "./modules/diningTableRoutes";
+import subscriberRoutes from "./modules/subscriberRoutes";
 
 
 const baseRoutes = [
@@ -85,7 +86,8 @@ const routes = baseRoutes.concat(
     creditBalanceReportRoutes,
     tableOrderRoutes,
     adminTableOrderRoutes,
-    diningTableRoutes
+    diningTableRoutes,
+    subscriberRoutes
 );
 
 const permission = store.getters.authPermission;

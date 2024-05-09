@@ -94,7 +94,7 @@ export default {
           day: "",
         },
         search: {
-          paginate: 1,
+          paginate: 0,
           page: 1,
           per_page: 10,
           order_column: "closing_time",

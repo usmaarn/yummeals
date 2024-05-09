@@ -15,7 +15,7 @@
 
         <button class="mobcart fa-solid fa-bag-shopping text-base w-12 h-12 leading-[48px] text-center rounded-full -mt-12 text-white bg-primary
         relative after:absolute after:top-3 ltr:after:right-2.5 rtl:after:left-2.5 after:w-2 after:h-2 after:rounded-full
-        after:shadow after:bg-[#FFDB1F]"></button>
+        after:shadow " :class=" subtotal > 0 ? ' after:bg-[#FFDB1F]' : ''"></button>
 
         <router-link :class="checkIsPathAndRoutePathSame('/offers') ? 'text-primary' : ''"
             class="flex flex-col items-center gap-1" :to="{ name: 'frontend.offers' }">
@@ -49,7 +49,7 @@ export default {
             categoryProps: {
                 search: {
                     paginate: 0,
-                    order_column: 'id',
+                    order_column: 'sort',
                     order_type: 'asc',
                     status: statusEnum.ACTIVE
                 },
@@ -79,6 +79,9 @@ export default {
         categories: function () {
             return this.$store.getters['frontendItemCategory/lists'];
         },
+        subtotal: function () {
+            return this.$store.getters['frontendCart/subtotal'];
+        }
     },
     mounted() {
         this.currentRoute = this.$route.path;

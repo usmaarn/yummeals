@@ -1,17 +1,17 @@
 <template>
-    <LoadingComponent :props="loading"/>
-    <SmTimeSlotModalCreateComponent v-on:click="this.props.form.day = this.day" :props="addButton"/>
+    <LoadingComponent :props="loading" />
+    <SmTimeSlotModalCreateComponent v-on:click="this.props.form.day = this.day" :props="addButton" />
 
     <div id="modal" class="modal">
         <div class="modal-dialog">
             <div class="modal-header">
                 <h3 class="modal-title">{{ $t("menu.time_slots") }}</h3>
                 <button class="modal-close fa-solid fa-xmark text-xl text-slate-400 hover:text-red-500"
-                        @click="reset"></button>
+                    @click="reset"></button>
             </div>
             <div class="modal-body">
-                <div v-if="message"
-                     class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-5 rounded relative" role="alert">
+                <div v-if="message" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-5 rounded relative"
+                    role="alert">
                     <span class="block sm:inline">{{ message }}</span>
                     <span class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer" @click="close">
                         <i class="lab lab-close-circle-line margin-top-5-px"></i>
@@ -26,7 +26,7 @@
                             </label>
 
                             <Datepicker hideInputIcon @update:modelValue="handleOpeningTime" v-model="opening_time"
-                                        :input-class-name="errors.opening_time ? 'invalid' : ''" time-picker/>
+                                :input-class-name="errors.opening_time ? 'invalid' : ''" time-picker />
 
                             <small class="db-field-alert" v-if="errors.opening_time">
                                 {{ errors.opening_time[0] }}
@@ -38,7 +38,7 @@
                             </label>
 
                             <Datepicker hideInputIcon @update:modelValue="handleClosingTime" v-model="closing_time"
-                                        :input-class-name="errors.opening_time ? 'invalid' : ''" time-picker/>
+                                :input-class-name="errors.opening_time ? 'invalid' : ''" time-picker />
                             <small class="db-field-alert" v-if="errors.closing_time">
                                 {{ errors.closing_time[0] }}
                             </small>
@@ -73,21 +73,23 @@ import "@vuepic/vue-datepicker/dist/main.css";
 
 export default {
     name: "TimeSlotCreateComponent",
-    components: {SmTimeSlotModalCreateComponent, LoadingComponent, Datepicker},
+    components: { SmTimeSlotModalCreateComponent, LoadingComponent, Datepicker },
     props: ["props", "day"],
     data() {
         return {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_time_slot"),
-            },
             opening_time: "",
             closing_time: "",
             errors: {},
             message: null,
         };
+    },
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_time_slot') };
+        }
     },
     methods: {
         handleOpeningTime: function (e) {

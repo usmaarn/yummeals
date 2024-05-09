@@ -80,9 +80,6 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_addon")
-            },
             enums: {
                 statusEnum: statusEnum,
                 statusEnumArray: {
@@ -95,6 +92,9 @@ export default {
         };
     },
     computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_addon') };
+        },
         items: function () {
             return this.$store.getters['item/lists'];
         }

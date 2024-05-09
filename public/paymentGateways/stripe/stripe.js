@@ -1,7 +1,7 @@
 if (stripeKey) {
-    let stripe = Stripe(stripeKey);
-    let elements = stripe.elements();
-    let style = {
+    var stripe = Stripe(stripeKey);
+    var elements = stripe.elements();
+    var style = {
         base: {
             fontSize: '16px',
             color: '#32325d',
@@ -9,7 +9,7 @@ if (stripeKey) {
         },
     };
 
-    let card = elements.create('card', {style: style});
+    var card = elements.create('card', {style: style});
     card.mount('#card-element');
 
     function stripe_payment() {
@@ -35,5 +35,3 @@ if (stripeKey) {
         form.submit();
     }
 }
-
-

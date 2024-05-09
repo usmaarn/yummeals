@@ -34,8 +34,8 @@
                                 </div>
                                 <div class="db-field-radio">
                                     <div class="custom-radio">
-                                        <input :value="enums.statusEnum.INACTIVE" v-model="props.form.status"
-                                            type="radio" id="inactive" class="custom-radio-field" />
+                                        <input :value="enums.statusEnum.INACTIVE" v-model="props.form.status" type="radio"
+                                            id="inactive" class="custom-radio-field" />
                                         <span class="custom-radio-span"></span>
                                     </div>
                                     <label for="inactive" class="db-field-label">{{ $t("label.inactive") }}</label>
@@ -45,39 +45,23 @@
                         </div>
 
                         <div class="form-col-12 sm:form-col-6">
-                            <label for="menu_section_id" class="db-field-title required">{{
-                                $t("label.menu_section_id")
-                            }}</label>
-
-                            <vue-select class="db-field-control f-b-custom-select" id="menu_section_id" v-bind:class="
-                                errors.menu_section_id ? 'invalid' : ''
-                            " v-model="props.form.menu_section_id" :options="menuSections" label-by="name"
-                                value-by="id" :closeOnSelect="true" :searchable="true" :clearOnClose="true"
-                                placeholder="--" search-placeholder="--" />
-                            <small class="db-field-alert" v-if="errors.menu_section_id">{{
-                                errors.menu_section_id[0]
-                            }}</small>
-                        </div>
-                        <div class="form-col-12 sm:form-col-6">
                             <label for="template_id" class="db-field-title">{{
                                 $t("label.template_id")
                             }}</label>
 
-                            <vue-select class="db-field-control f-b-custom-select" id="template_id" v-bind:class="
-                                errors.template_id ? 'invalid' : ''
-                            " v-model="props.form.template_id" :options="menuTemplates" label-by="name" value-by="id"
-                                :closeOnSelect="true" :searchable="true" :clearOnClose="true" placeholder="--"
+                            <vue-select class="db-field-control f-b-custom-select" id="template_id" v-bind:class="errors.template_id ? 'invalid' : ''
+                                " v-model="props.form.template_id" :options="menuTemplates" label-by="name"
+                                value-by="id" :closeOnSelect="true" :searchable="true" :clearOnClose="true" placeholder="--"
                                 search-placeholder="--" />
                             <small class="db-field-alert" v-if="errors.template_id">{{ errors.template_id[0] }}</small>
                         </div>
 
-                        <div class="form-col-12">
+                        <div class="form-col-12 sm:form-col-6">
                             <label for="image" class="db-field-title">{{
                                 $t("label.image")
                             }}</label>
-                            <input @change="changeImage" v-bind:class="errors.image ? 'invalid' : ''" id="image"
-                                type="file" class="db-field-control" ref="imageProperty"
-                                accept="image/png, image/jpeg, image/jpg" />
+                            <input @change="changeImage" v-bind:class="errors.image ? 'invalid' : ''" id="image" type="file"
+                                class="db-field-control" ref="imageProperty" accept="image/png, image/jpeg, image/jpg" />
                             <small class="db-field-alert" v-if="errors.image">{{
                                 errors.image[0]
                             }}</small>
@@ -87,9 +71,8 @@
                             <label for="description" class="db-field-title required">{{
                                 $t("label.description")
                             }}</label>
-                            <textarea v-model="props.form.description" v-bind:class="
-                                errors.description ? 'invalid' : ''
-                            " id="description" class="db-field-control"></textarea>
+                            <quill-editor v-model:value="props.form.description" id="description"
+                                class="!h-40 textarea-border-radius ql-container ql-snow" />
                             <small class="db-field-alert" v-if="errors.description">{{ errors.description[0] }}</small>
                         </div>
 
@@ -118,18 +101,16 @@ import LoadingComponent from "../../components/LoadingComponent";
 import statusEnum from "../../../../enums/modules/statusEnum";
 import alertService from "../../../../services/alertService";
 import appService from "../../../../services/appService";
+import { quillEditor } from 'vue3-quill'
 
 export default {
     name: "PageCreateComponent",
-    components: { SmModalCreateComponent, LoadingComponent },
+    components: { SmModalCreateComponent, LoadingComponent, quillEditor },
     props: ["props"],
     data() {
         return {
             loading: {
                 isActive: false,
-            },
-            addButton: {
-                title: this.$t("button.add_page"),
             },
             enums: {
                 statusEnum: statusEnum,
@@ -143,12 +124,11 @@ export default {
         };
     },
     mounted() {
-        this.$store.dispatch("menuSection/lists");
         this.$store.dispatch("menuTemplate/lists");
     },
     computed: {
-        menuSections: function () {
-            return this.$store.getters["menuSection/lists"];
+        addButton: function () {
+            return { title: this.$t('button.add_page') };
         },
         menuTemplates: function () {
             return this.$store.getters["menuTemplate/lists"];

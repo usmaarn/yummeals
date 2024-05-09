@@ -89,9 +89,6 @@ export default {
             loading: {
                 isActive: false,
             },
-            addButton: {
-                title: this.$t("button.add_extra")
-            },
             enums: {
                 statusEnum: statusEnum,
                 statusEnumArray: {
@@ -102,7 +99,11 @@ export default {
             errors: {},
         };
     },
-    computed: {},
+    computed: {
+        addButton: function () {
+            return { title: this.$t('button.add_extra') };
+        }
+    },
     mounted() { },
     methods: {
         add: function () {
